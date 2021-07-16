@@ -1,5 +1,8 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include "ship.h"
+#include "game.h"
+
 
 
 using namespace sf;
@@ -7,16 +10,10 @@ using namespace std;
 
 sf::Texture spritesheet;
 sf::Sprite invader;
+std::vector<Ship*> ships;
 
-const Keyboard::Key controls[4] = {
-    Keyboard::W,   // Player1 Up
-    Keyboard::S,   // Player1 Down
-    Keyboard::A,  // Player 1 Left
-    Keyboard::D // Player1 Right
-};
 
-const int gameWidth = 600;
-const int gameHeight = 600;
+
 
 void Load() {
     if (!spritesheet.loadFromFile("res/img/invaders_sheet.png")) {
@@ -24,6 +21,21 @@ void Load() {
     }
     invader.setTexture(spritesheet);
     invader.setTextureRect(sf::IntRect(0, 0, 32, 32));
+
+    Invader::speed = 20.f;
+    
+    for (int r = 0; r < invaders_rows; ++r) {
+        auto rect = IntRect(0, 0, 32, 32);
+        for (int c = 0; c < invaders_columns;  ++c) {
+            Vector2f position = Vector2f(c*50, r*50);
+            auto inv = new Invader(rect, position);
+            ships.push_back(inv);
+        }
+    }
+
+    auto player = new Player();
+    ships.push_back(player);
+   
 }
 
 void Reset() {
@@ -47,11 +59,19 @@ void Update(RenderWindow& window) {
     if (Keyboard::isKeyPressed(Keyboard::Escape)) {
         window.close();
     }
+
+    for (auto& s : ships) {
+        s->Update(dt);
+    };
 }
 
 void Render(RenderWindow& window) {
     // Draw Everything
-    window.draw(invader);
+   
+
+    for (const auto s : ships) {
+        window.draw(*s);
+    }
 }
 
 int main() {
