@@ -1,6 +1,7 @@
 #pragma once
-
+#include "SFML/Graphics.hpp"
 #include "engine.h"
+
 
 class MenuScene : public Scene {
 public:
@@ -10,4 +11,5 @@ public:
   void Load() override;
 
   void Update(const double& dt) override;
+
 };

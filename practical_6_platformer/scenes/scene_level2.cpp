@@ -49,14 +49,17 @@ void Level2Scene::Load() {
                        Vector2f(0, 24));
     // *********************************
     // Add HurtComponent
-
+    enemy->addComponent<HurtComponent>();
     // Add ShapeComponent, Red 16.f Circle
-
+    auto s = enemy->addComponent<ShapeComponent>();
+    s->setShape<sf::CircleShape>(16.f, 16.f);
+    s->getShape().setFillColor(Color::Red);
+    s->getShape().setOrigin(16.f, 16.f);
 
 
 
     // Add EnemyAIComponent
-
+    enemy->addComponent<EnemyAIComponent>();
     // *********************************
   }
 

@@ -6,6 +6,7 @@
 class TextComponent : public Component {
 public:
   TextComponent() = delete;
+
   explicit TextComponent(Entity* p, const std::string& str = "");
   void update(double dt) override;
 
@@ -14,6 +15,8 @@ public:
   ~TextComponent() override = default;
 
   void SetText(const std::string& str);
+
+  void setPosition(int x, int y);
 
 protected:
   std::shared_ptr<sf::Font> _font;

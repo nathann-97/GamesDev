@@ -3,6 +3,8 @@
 #include "../game.h"
 #include <SFML/Window/Keyboard.hpp>
 #include <iostream>
+#include "engine.h"
+
 
 using namespace std;
 using namespace sf;
@@ -10,9 +12,11 @@ using namespace sf;
 void MenuScene::Load() {
   cout << "Menu Load \n";
   {
-    auto txt = makeEntity();
-    auto t = txt->addComponent<TextComponent>(
-        "Platformer\nPress Space to Start");
+    auto title = makeEntity();
+    auto t = title->addComponent<TextComponent>(
+        "Shape Escape\n \nPress Space to continue");
+    
+
   }
   setLoaded(true);
 }

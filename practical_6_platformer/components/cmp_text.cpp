@@ -16,4 +16,10 @@ TextComponent::TextComponent(Entity* const p, const std::string& str)
 void TextComponent::SetText(const std::string& str) {
   _string = str;
   _text.setString(_string);
+  
+}
+
+void TextComponent::setPosition(int x, int y)
+{
+	_text.setPosition(x, y);
 }

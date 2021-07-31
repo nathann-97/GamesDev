@@ -81,6 +81,8 @@ void Level3Scene::Update(const double& dt) {
     p->setFriction(.0001f);
     p->impulse(Vector2f(-3.f, 0));
     p->setMass(1000000000.f);
+
+    
   }
   
 }
