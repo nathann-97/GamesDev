@@ -2,6 +2,8 @@
 #include <iostream>
 #include "ship.h"
 #include "game.h"
+#include "bullet.h"
+
 
 
 
@@ -11,6 +13,7 @@ using namespace std;
 sf::Texture spritesheet;
 sf::Sprite invader;
 std::vector<Ship*> ships;
+
 
 
 
@@ -35,6 +38,7 @@ void Load() {
 
     auto player = new Player();
     ships.push_back(player);
+
    
 }
 
@@ -63,6 +67,8 @@ void Update(RenderWindow& window) {
     for (auto& s : ships) {
         s->Update(dt);
     };
+    
+    
 }
 
 void Render(RenderWindow& window) {
@@ -72,7 +78,9 @@ void Render(RenderWindow& window) {
     for (const auto s : ships) {
         window.draw(*s);
     }
-}
+    
+    }
+   
 
 int main() {
     RenderWindow window(VideoMode(gameWidth, gameHeight), "SPACE INVADERS");
